@@ -335,7 +335,7 @@ __DATA__
             <termEntry id="C002">
                 <langSet xml:lang="en">
                 <tig>
-                  <admin>cute!</admin>
+                  <note>cute!</note>
                   <termNote type="partOfSpeech">noun</termNote>
                   <admin type="customerSubset">SAP</admin>
                   <termNote type="administrativeStatus">preferred</termNote>

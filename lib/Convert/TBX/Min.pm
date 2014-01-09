@@ -137,7 +137,7 @@ sub _make_text {
                         paste($term_el);
                 }
                 if(my $note = $term_group->note){
-                    XML::Twig::Elt->new(admin => $note)->
+                    XML::Twig::Elt->new(note => $note)->
                         paste($term_el);
                 }
             }
