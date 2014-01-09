@@ -68,6 +68,7 @@ sub min2basic {
 
     my $twig = XML::Twig->new();
     $twig->set_doctype('martif', 'TBXBasiccoreStructV02.dtd');
+    $twig->set_encoding('UTF-8');
     $twig->set_root($martif);
 	return \$twig->sprint;
 }
