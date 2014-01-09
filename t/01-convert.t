@@ -245,14 +245,14 @@ __DATA__
     </header>
     <body>
         <conceptEntry id="C002">
-            <langGroup xml:lang="en">
-                <termGroup>
-                    <term>dog</term>
-                </termGroup>
-            </langGroup>
             <langGroup xml:lang="de">
                 <termGroup>
                     <term>hund</term>
+                </termGroup>
+            </langGroup>
+            <langGroup xml:lang="en">
+                <termGroup>
+                    <term>dog</term>
                 </termGroup>
             </langGroup>
         </conceptEntry>
@@ -335,14 +335,177 @@ __DATA__
             <termEntry id="C002">
                 <langSet xml:lang="en">
                 <tig>
-                  <note>cute!</note>
+                  <term>dog</term>
+                  <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
                   <termNote type="partOfSpeech">noun</termNote>
                   <admin type="customerSubset">SAP</admin>
-                  <termNote type="administrativeStatus">preferred</termNote>
-                  <term>dog</term>
+                  <note>cute!</note>
                 </tig>
                 </langSet>
             </termEntry>
         </body>
     </text>
 </martif>
+
+=== termStatus other values
+--- input
+<?xml version='1.0' encoding="UTF-8"?>
+<TBX dialect="TBX-Min">
+    <header>
+        <id>TBX sample</id>
+        <languages source="de" target="en"/>
+    </header>
+    <body>
+        <conceptEntry id="C002">
+            <langGroup xml:lang="en">
+                <termGroup>
+                    <term>dog1</term>
+                    <termStatus>preferred</termStatus>
+                </termGroup>
+                <termGroup>
+                    <term>dog2</term>
+                    <termStatus>admitted</termStatus>
+                </termGroup>
+                <termGroup>
+                    <term>dog3</term>
+                    <termStatus>notRecommended</termStatus>
+                </termGroup>
+                <termGroup>
+                    <term>dog4</term>
+                    <termStatus>obsolete</termStatus>
+                </termGroup>
+            </langGroup>
+        </conceptEntry>
+    </body>
+</TBX>
+--- expected
+<martif type="TBX-Basic" xml:lang="de">
+    <martifHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>TBX sample</title>
+            </titleStmt>
+            <sourceDesc>
+                <p>TBX sample (generated from UTX)</p>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+                <p type="XCSURI">TBXBasicXCSV02.xcs
+                </p>
+        </encodingDesc>
+    </martifHeader>
+    <text>
+        <body>
+            <termEntry id="C002">
+                <langSet xml:lang="en">
+                  <tig>
+                    <term>dog1</term>
+                    <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+                  </tig>
+                  <tig>
+                    <term>dog2</term>
+                    <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+                  </tig>
+                  <tig>
+                    <term>dog3</term>
+                    <termNote type="administrativeStatus">deprecatedTerm-admn-sts</termNote>
+                  </tig>
+                  <tig>
+                    <term>dog4</term>
+                    <termNote type="administrativeStatus">supersededTerm-admn-sts</termNote>
+                  </tig>
+                </langSet>
+            </termEntry>
+        </body>
+    </text>
+</martif>
+
+=== partOfSpeech other values
+--- input
+<?xml version='1.0' encoding="UTF-8"?>
+<TBX dialect="TBX-Min">
+    <header>
+        <id>TBX sample</id>
+        <languages source="de" target="en"/>
+    </header>
+    <body>
+        <conceptEntry id="C002">
+            <langGroup xml:lang="en">
+                <termGroup>
+                    <term>dog1</term>
+                    <partOfSpeech>noun</partOfSpeech>
+                </termGroup>
+                <termGroup>
+                    <term>dog2</term>
+                    <partOfSpeech>verb</partOfSpeech>
+                </termGroup>
+                <termGroup>
+                    <term>dog3</term>
+                    <partOfSpeech>adjective</partOfSpeech>
+                </termGroup>
+                <termGroup>
+                    <term>dog4</term>
+                    <partOfSpeech>adverb</partOfSpeech>
+                </termGroup>
+                <termGroup>
+                    <term>dog5</term>
+                    <partOfSpeech>properNoun</partOfSpeech>
+                </termGroup>
+                <termGroup>
+                    <term>dog6</term>
+                    <partOfSpeech>other</partOfSpeech>
+                </termGroup>
+            </langGroup>
+        </conceptEntry>
+    </body>
+</TBX>
+--- expected
+<martif type="TBX-Basic" xml:lang="de">
+    <martifHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>TBX sample</title>
+            </titleStmt>
+            <sourceDesc>
+                <p>TBX sample (generated from UTX)</p>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+                <p type="XCSURI">TBXBasicXCSV02.xcs
+                </p>
+        </encodingDesc>
+    </martifHeader>
+    <text>
+        <body>
+            <termEntry id="C002">
+                <langSet xml:lang="en">
+                  <tig>
+                    <term>dog1</term>
+                    <termNote type="partOfSpeech">noun</termNote>
+                  </tig>
+                  <tig>
+                    <term>dog2</term>
+                    <termNote type="partOfSpeech">verb</termNote>
+                  </tig>
+                  <tig>
+                    <term>dog3</term>
+                    <termNote type="partOfSpeech">adjective</termNote>
+                  </tig>
+                  <tig>
+                    <term>dog4</term>
+                    <termNote type="partOfSpeech">adverb</termNote>
+                  </tig>
+                  <tig>
+                    <term>dog5</term>
+                    <termNote type="partOfSpeech">properNoun</termNote>
+                  </tig>
+                  <tig>
+                    <term>dog6</term>
+                    <termNote type="partOfSpeech">other</termNote>
+                  </tig>
+                </langSet>
+            </termEntry>
+        </body>
+    </text>
+</martif>
+

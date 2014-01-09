@@ -12,6 +12,17 @@ use Exporter::Easy (
 # not ours
 our @CARP_NOT = __PACKAGE__;
 
+# mappings between TBX-Min and TBX-Basic picklists
+my %status_map = (
+    preferred => 'preferredTerm-admn-sts',
+    admitted => 'admittedTerm-admn-sts',
+    notRecommended => 'deprecatedTerm-admn-sts',
+    obsolete => 'supersededTerm-admn-sts'
+);
+
+# convert input file if called as a script
+min2basic(@ARGV) unless caller;
+
 # VERSION
 
 # ABSTRACT: Convert TBX-Min to TBX-Basic
@@ -25,8 +36,6 @@ our @CARP_NOT = __PACKAGE__;
 This module converts TBX-Min XML into TBX-Basic XML.
 
 =cut
-
-min2basic(@ARGV) unless caller;
 
 =head1 FUNCTIONS
 
@@ -115,30 +124,31 @@ sub _make_text {
         for my $lang_group (@{$concept->lang_groups}){
             my $lang_el = XML::Twig::Elt->new(
                 langSet => {'xml:lang' => $lang_group->code})->
-                paste($entry);
+                paste(last_child => $entry);
             for my $term_group (@{$lang_group->term_groups}){
                 my $term_el = XML::Twig::Elt->new('tig');
-                $term_el->paste($lang_el);
+                $term_el->paste(last_child => $lang_el);
                 XML::Twig::Elt->new(
                     term => $term_group->term)->paste($term_el);
                 if(my $status = $term_group->status){
                     XML::Twig::Elt->new(termNote =>
-                        {type => 'administrativeStatus'}, $status)->
-                        paste($term_el);
-                }
-                if(my $customer = $term_group->customer){
-                    XML::Twig::Elt->new(admin =>
-                        {type => 'customerSubset'}, $customer)->
-                        paste($term_el);
+                        {type => 'administrativeStatus'},
+                        $status_map{$status})->
+                        paste(last_child => $term_el);
                 }
                 if(my $pos = $term_group->part_of_speech){
                     XML::Twig::Elt->new(termNote =>
                         {type => 'partOfSpeech'}, $pos)->
-                        paste($term_el);
+                        paste(last_child => $term_el);
+                }
+                if(my $customer = $term_group->customer){
+                    XML::Twig::Elt->new(admin =>
+                        {type => 'customerSubset'}, $customer)->
+                        paste(last_child => $term_el);
                 }
                 if(my $note = $term_group->note){
                     XML::Twig::Elt->new(note => $note)->
-                        paste($term_el);
+                        paste(last_child => $term_el);
                 }
             }
         }
