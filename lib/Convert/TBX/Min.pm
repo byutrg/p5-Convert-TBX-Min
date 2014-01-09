@@ -71,18 +71,17 @@ sub _make_header {
     XML::Twig::Elt->new(title => $min->id)->
         wrap_in('titleStmt')->paste($file_desc);
 
-    my $source_desc = XML::Twig::Elt->new('sourceDesc');
-    $source_desc->paste($file_desc);
+    my $source_desc = XML::Twig::Elt->new('sourceDesc')->
+        paste($file_desc);
 
     my @header_atts;
-    for my $header_att (qw(creator license directionality description)){
+    for my $header_att (qw(creator description directionality license)){
         no strict 'refs';
         if(my $value = $min->$header_att){
-            push @header_atts, '$header_att: ' . $value;
+            push @header_atts, "$header_att: $value";
         }
     }
     if(@header_atts){
-        my $source_desc = XML::Twig::Elt->new('sourceDesc');
         for my $att(@header_atts){
             XML::Twig::Elt->new(p => $att)->paste($source_desc);
         }
@@ -102,10 +101,9 @@ sub _make_text {
     my $body = XML::Twig::Elt->new('body');
 
     for my $concept (@{$min->concepts}){
-        my $entry = XML::Twig::Elt->new('termEntry')->paste($body);
-        if(my $id = $concept->id){
-            $entry->set_att(id => $id);
-        }
+        my $entry = XML::Twig::Elt->new(
+            'termEntry' => {id => $concept->id})->paste(
+            last_child => $body);
         if(my $subject_field = $concept->subject_field){
             XML::Twig::Elt->new(descrip => {type => 'subjectField'},
                 $subject_field)->paste($entry);
@@ -144,96 +142,4 @@ sub _make_text {
     return $body->wrap_in('text');
 }
 
-=head2 C<as_xml>
-
-Returns a string pointer containing an XML representation of this TBX-Min
-document.
-
-=cut
-sub as_xml {
-    my ($self) = @_;
-    my $xml;
-    my $writer = XML::Writer->new(
-        OUTPUT => \$xml, NEWLINES => 1, ENCODING => 'utf-8');
-    $writer->startTag('TBX', dialect => 'TBX-Min');
-
-    $writer->startTag('header');
-    for my $header_att (qw(id creator license directionality description)){
-        next unless $self->{$header_att};
-        $writer->startTag($header_att);
-        $writer->characters($self->{$header_att});
-        $writer->endTag;
-    }
-    if($self->{source_lang} || $self->{target_lang}){
-        my @atts;
-        push @atts, (source => $self->{source_lang}) if $self->{source_lang};
-        push @atts, (target => $self->{target_lang}) if $self->{target_lang};
-        $writer->emptyTag('languages', @atts);
-    }
-    if(my $dt = $self->{date_created}){
-        $writer->startTag('dateCreated');
-        $writer->characters($dt->iso8601);
-        $writer->endTag;
-    }
-    $writer->endTag; # header
-
-    $writer->startTag('body');
-
-    for my $concept (@{$self->concepts}){
-        $writer->startTag('conceptEntry',
-            $concept->id ? (id => $concept->id) : ());
-        if(my $sf = $concept->subject_field){
-            $writer->startTag('subjectField');
-            $writer->characters($sf);
-            $writer->endTag;
-        }
-        for my $langGrp (@{$concept->lang_groups}){
-            $writer->startTag('langGroup',
-                $langGrp->code ? ('xml:lang' => $langGrp->code) : () );
-            for my $termGrp (@{$langGrp->term_groups}){
-                $writer->startTag('termGroup');
-
-                if (my $term = $termGrp->term){
-                    $writer->startTag('term');
-                    $writer->characters($term);
-                    $writer->endTag; # term
-                }
-
-                if (my $customer = $termGrp->customer){
-                    $writer->startTag('customer');
-                    $writer->characters($customer);
-                    $writer->endTag; # customer
-                }
-
-                if (my $note = $termGrp->note){
-                    $writer->startTag('note');
-                    $writer->characters($note);
-                    $writer->endTag; # note
-                }
-
-                if (my $status = $termGrp->status){
-                    $writer->startTag('termStatus');
-                    $writer->characters($status);
-                    $writer->endTag; # termStatus
-                }
-
-                if (my $pos = $termGrp->part_of_speech){
-                    $writer->startTag('partOfSpeech');
-                    $writer->characters($pos);
-                    $writer->endTag; # partOfSpeech
-                }
-
-                $writer->endTag; # termGroup
-            }
-            $writer->endTag; # langGroup
-        }
-        $writer->endTag; # conceptEntry
-    }
-
-    $writer->endTag; # body
-
-    $writer->endTag; # TBX
-    $writer->end;
-    return $xml;
-}
 1;
