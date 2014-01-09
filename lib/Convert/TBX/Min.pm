@@ -49,12 +49,101 @@ sub min2basic {
 	}
 	my $xml;
 	my $martif = XML::Twig::Elt->new(martif => {type => 'TBX-Basic'});
+    $martif->set_pretty_print('indented');
 	if($min->source_lang){
 		$martif->set_att('xml:lang' => $min->source_lang);
 	}
-	# Next: martifHeader
+    my $header = _make_header($min);
+    $header->paste($martif);
+    _make_text($min)->paste('after' => $header);
 	return \$martif->sprint;
 }
+
+# create the martifHeader element from the TBX::Min input
+sub _make_header {
+    my ($min) = @_;
+    my $header = XML::Twig::Elt->new('martifHeader');
+    XML::Twig::Elt->new(p => {type => 'XCSURI'}, 'TBXBasicXCSV02.xcs')->
+        wrap_in('encodingDesc')->paste($header);
+
+    my $file_desc = XML::Twig::Elt->new('fileDesc');
+    $file_desc->paste($header);
+    XML::Twig::Elt->new(title => $min->id)->
+        wrap_in('titleStmt')->paste($file_desc);
+
+    my $source_desc = XML::Twig::Elt->new('sourceDesc');
+    $source_desc->paste($file_desc);
+
+    my @header_atts;
+    for my $header_att (qw(creator license directionality description)){
+        no strict 'refs';
+        if(my $value = $min->$header_att){
+            push @header_atts, '$header_att: ' . $value;
+        }
+    }
+    if(@header_atts){
+        my $source_desc = XML::Twig::Elt->new('sourceDesc');
+        for my $att(@header_atts){
+            XML::Twig::Elt->new(p => $att)->paste($source_desc);
+        }
+    }
+    # need a default source description
+    if(not $min->description){
+        XML::Twig::Elt->new(p => $min->id . ' (generated from UTX)')->
+            paste($source_desc);
+    }
+
+    return $header;
+}
+
+# create the body element from the TBX::Min input
+sub _make_text {
+    my ($min) = @_;
+    my $body = XML::Twig::Elt->new('body');
+
+    for my $concept (@{$min->concepts}){
+        my $entry = XML::Twig::Elt->new('termEntry')->paste($body);
+        if(my $id = $concept->id){
+            $entry->set_att(id => $id);
+        }
+        if(my $subject_field = $concept->subject_field){
+            XML::Twig::Elt->new(descrip => {type => 'subjectField'},
+                $subject_field)->paste($entry);
+        }
+        for my $lang_group (@{$concept->lang_groups}){
+            my $lang_el = XML::Twig::Elt->new(
+                langSet => {'xml:lang' => $lang_group->code})->
+                paste($entry);
+            for my $term_group (@{$lang_group->term_groups}){
+                my $term_el = XML::Twig::Elt->new('tig');
+                $term_el->paste($lang_el);
+                XML::Twig::Elt->new(
+                    term => $term_group->term)->paste($term_el);
+                if(my $status = $term_group->status){
+                    XML::Twig::Elt->new(termNote =>
+                        {type => 'administrativeStatus'}, $status)->
+                        paste($term_el);
+                }
+                if(my $customer = $term_group->customer){
+                    XML::Twig::Elt->new(admin =>
+                        {type => 'customerSubset'}, $customer)->
+                        paste($term_el);
+                }
+                if(my $pos = $term_group->part_of_speech){
+                    XML::Twig::Elt->new(termNote =>
+                        {type => 'partOfSpeech'}, $pos)->
+                        paste($term_el);
+                }
+                if(my $note = $term_group->note){
+                    XML::Twig::Elt->new(admin => $note)->
+                        paste($term_el);
+                }
+            }
+        }
+    }
+    return $body->wrap_in('text');
+}
+
 =head2 C<as_xml>
 
 Returns a string pointer containing an XML representation of this TBX-Min

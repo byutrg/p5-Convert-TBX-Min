@@ -14,7 +14,6 @@ sub convert {
 filters {input => 'convert'};
 
 for my $block(blocks){
-    print "got " . $block->input;
     is_xml($block->input, $block->expected, $block->name);
 }
 
@@ -41,10 +40,10 @@ __DATA__
     <martifHeader>
         <fileDesc>
             <titleStmt>
-                <title>TBX Sample</title>
+                <title>TBX sample</title>
             </titleStmt>
             <sourceDesc>
-                <p>TBX Sample (generated from UTX)</p>
+                <p>TBX sample (generated from UTX)</p>
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
