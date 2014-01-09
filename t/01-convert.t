@@ -1,11 +1,12 @@
 use strict;
 use warnings;
 use Test::More;
-plan tests => 1+blocks();
+plan tests => 2 + blocks();
 use Test::NoWarnings;
 use Convert::TBX::Min 'min2basic';
 use Test::Base;
 use Test::XML;
+use Test::LongString;
 
 sub convert {
     my $min = TBX::Min->new_from_xml(\$_);
@@ -17,8 +18,14 @@ for my $block(blocks){
     is_xml($block->input, $block->expected, $block->name);
 }
 
+# separately test that the output has the doctype required by the TBX
+# Checker. This is not tested by is_xml.
+like_string( (blocks)[0]->input,
+    qr/<!DOCTYPE martif SYSTEM "TBXBasiccoreStructV02.dtd">/,
+    'output contains doctype');
+
 __DATA__
-=== basic header
+=== basic
 --- input
 <TBX dialect="TBX-Min">
     <header>

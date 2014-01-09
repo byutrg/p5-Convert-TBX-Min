@@ -56,7 +56,11 @@ sub min2basic {
     my $header = _make_header($min);
     $header->paste($martif);
     _make_text($min)->paste('after' => $header);
-	return \$martif->sprint;
+
+    my $twig = XML::Twig->new();
+    $twig->set_doctype('martif', 'TBXBasiccoreStructV02.dtd');
+    $twig->set_root($martif);
+	return \$twig->sprint;
 }
 
 # create the martifHeader element from the TBX::Min input
