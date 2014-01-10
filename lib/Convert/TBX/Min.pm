@@ -28,7 +28,7 @@ min2basic(@ARGV) unless caller;
 # ABSTRACT: Convert TBX-Min to TBX-Basic
 =head1 SYNOPSIS
 
-	use Convert::TBX::Min (min2basic);
+	use Convert::TBX::Min 'min2basic';
 	min2basic('/path/to/file'); # XML string pointer okay too
 
 =head1 DESCRIPTION
@@ -54,9 +54,8 @@ sub min2basic {
 	if(ref $input eq 'TBX::Min'){
 		$min = $input;
 	}else{
-		my $min = TBX::Min->new_from_xml($input);
+	   $min = TBX::Min->new_from_xml($input);
 	}
-	my $xml;
 	my $martif = XML::Twig::Elt->new(martif => {type => 'TBX-Basic'});
     $martif->set_pretty_print('indented');
 	if($min->source_lang){
@@ -90,7 +89,6 @@ sub _make_header {
 
     my @header_atts;
     for my $header_att (qw(creator description directionality license)){
-        no strict 'refs';
         if(my $value = $min->$header_att){
             push @header_atts, "$header_att: $value";
         }
