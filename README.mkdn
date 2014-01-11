@@ -1,0 +1,36 @@
+# NAME
+
+Convert::TBX::Min - Convert TBX-Min to TBX-Basic
+
+# VERSION
+
+version 0.01
+
+# SYNOPSIS
+
+	use Convert::TBX::Min 'min2basic';
+	min2basic('/path/to/file'); # XML string pointer okay too
+
+# DESCRIPTION
+
+This module converts TBX-Min XML into TBX-Basic XML.
+
+# FUNCTIONS
+
+## `min2basic`
+
+Converts TBX-Min data into TBX-Basic data. The argument may be either
+the path to a TBX-Min file, a scalar ref containing the actual
+TBX-Min text, or a TBX::Min object. The return value is a scalar
+ref containing the TBX-Basic data.
+
+# AUTHOR
+
+Nathan Glenn <garfieldnate@gmail.com>
+
+# COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2014 by Nathan Glenn.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
