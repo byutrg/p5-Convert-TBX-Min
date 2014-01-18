@@ -1,6 +1,6 @@
 Revision history for Convert-TBX-Min
 
 {{$NEXT}}
-
+    - print titleStmt before sourceDesc (required by TBX Checker)
 0.01      2014-01-11 15:44:16 America/Los_Angeles
 	initial release

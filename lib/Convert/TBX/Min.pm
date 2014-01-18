@@ -85,7 +85,7 @@ sub _make_header {
         wrap_in('titleStmt')->paste($file_desc);
 
     my $source_desc = XML::Twig::Elt->new('sourceDesc')->
-        paste($file_desc);
+        paste(last_child => $file_desc);
 
     my @header_atts;
     for my $header_att (qw(creator description directionality license)){

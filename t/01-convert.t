@@ -8,6 +8,10 @@ use Test::Base;
 use Test::XML;
 use Test::LongString;
 
+# TODO: someday use Test::XML::Ordered or something else to guarantee
+# that titleStmt is before sourceDesc, which is enforced by the TBX
+# Checker
+
 sub convert {
     my $min = TBX::Min->new_from_xml(\$_);
     return ${min2basic($min)};
