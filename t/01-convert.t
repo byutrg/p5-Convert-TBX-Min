@@ -35,6 +35,7 @@ contains_string( (blocks)[0]->input,
 
 __DATA__
 === basic
+--- ONLY
 --- input
 <TBX dialect="TBX-Min">
     <header>
@@ -42,13 +43,13 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <conceptEntry id="C002">
+        <entry id="C002">
             <langGroup xml:lang="en">
                 <termGroup>
                     <term>dog</term>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
+        </entry>
     </body>
 </TBX>
 --- expected
@@ -89,14 +90,14 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <conceptEntry id="C002">
+        <entry id="C002">
             <subjectField>whatever</subjectField>
             <langGroup xml:lang="en">
                 <termGroup>
                     <term>dog</term>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
+        </entry>
     </body>
 </TBX>
 --- expected
@@ -143,13 +144,13 @@ __DATA__
         <license>CC BY license can be freely copied and modified</license>
     </header>
     <body>
-        <conceptEntry id="C002">
+        <entry id="C002">
             <langGroup xml:lang="en">
                 <termGroup>
                     <term>dog</term>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
+        </entry>
     </body>
 </TBX>
 --- expected
@@ -192,20 +193,20 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <conceptEntry id="C002">
+        <entry id="C002">
             <langGroup xml:lang="en">
                 <termGroup>
                     <term>dog1</term>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
-        <conceptEntry id="C003">
+        </entry>
+        <entry id="C003">
             <langGroup xml:lang="en">
                 <termGroup>
                     <term>dog2</term>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
+        </entry>
     </body>
 </TBX>
 --- expected
@@ -253,7 +254,7 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <conceptEntry id="C002">
+        <entry id="C002">
             <langGroup xml:lang="de">
                 <termGroup>
                     <term>hund</term>
@@ -264,7 +265,7 @@ __DATA__
                     <term>dog</term>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
+        </entry>
     </body>
 </TBX>
 --- expected
@@ -310,7 +311,7 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <conceptEntry id="C002">
+        <entry id="C002">
             <langGroup xml:lang="en">
                 <termGroup>
                     <term>dog</term>
@@ -320,7 +321,7 @@ __DATA__
                     <partOfSpeech>noun</partOfSpeech>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
+        </entry>
     </body>
 </TBX>
 --- expected
@@ -365,7 +366,7 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <conceptEntry id="C002">
+        <entry id="C002">
             <langGroup xml:lang="en">
                 <termGroup>
                     <term>dog1</term>
@@ -384,7 +385,7 @@ __DATA__
                     <termStatus>obsolete</termStatus>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
+        </entry>
     </body>
 </TBX>
 --- expected
@@ -438,7 +439,7 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <conceptEntry id="C002">
+        <entry id="C002">
             <langGroup xml:lang="en">
                 <termGroup>
                     <term>dog1</term>
@@ -465,7 +466,7 @@ __DATA__
                     <partOfSpeech>other</partOfSpeech>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
+        </entry>
     </body>
 </TBX>
 --- expected

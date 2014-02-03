@@ -1,7 +1,7 @@
 package Convert::TBX::Min;
 use strict;
 use warnings;
-use TBX::Min;
+use TBX::Min 0.06;
 use XML::Writer;
 use XML::Twig;
 use Exporter::Easy (
@@ -112,7 +112,7 @@ sub _make_text {
     my ($min) = @_;
     my $body = XML::Twig::Elt->new('body');
 
-    for my $concept (@{$min->concepts}){
+    for my $concept (@{$min->entries}){
         my $entry = XML::Twig::Elt->new(
             'termEntry' => {id => $concept->id})->paste(
             last_child => $body);
