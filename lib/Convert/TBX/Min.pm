@@ -41,10 +41,10 @@ This module converts TBX-Min XML into TBX-Basic XML.
 
 =head2 C<min2basic>
 
-Converts TBX-Min data into TBX-Basic data. The argument may be either
+Converts TBX-Min data into TBX-Basic data. The input may be either
 the path to a TBX-Min file, a scalar ref containing the actual
 TBX-Min text, or a TBX::Min object. The return value is a scalar
-ref containing the TBX-Basic data.
+ref containing the TBX-Basic XML document as a UTF-8-encoded string.
 
 =cut
 
@@ -156,3 +156,18 @@ sub _make_text {
 }
 
 1;
+
+__END__
+=head1 SEE ALSO
+
+=over
+
+=item L<TBX::Min>
+
+=item L<Convert::TBX::Basic>
+
+=back
+
+Schema for validating TBX documents, as well as more information
+about individual dialects, is available on
+L<GitHub|https://github.com/byutrg/TBX-Spec>.
