@@ -1,0 +1,15 @@
+<TBX dialect="TBX-Min">
+    <header>
+        <id>TBX sample</id>
+        <languages source="de" target="en"/>
+    </header>
+    <body>
+        <entry id="C002">
+            <langGroup xml:lang="en">
+                <termGroup>
+                    <term>dog</term>
+                </termGroup>
+            </langGroup>
+        </entry>
+    </body>
+</TBX>

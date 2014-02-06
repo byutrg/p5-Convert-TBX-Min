@@ -162,6 +162,8 @@ __END__
 
 =over
 
+=item L<min2basic> (the included script)
+
 =item L<TBX::Min>
 
 =item L<Convert::TBX::Basic>

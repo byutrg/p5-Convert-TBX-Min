@@ -1,0 +1,25 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use Convert::TBX::Min 'min2basic';
+# PODNAME: min2basic
+# VERSION
+# ABSTRACT: script for converting TBX-Min to TBX-Basic
+
+=head1 SYNOPSIS
+
+    % basic2min <TBX-Min input file> >basic.tbx
+
+=head1 DESCRIPTION
+
+This script is a simple CLI wrapper around the C<basic2min> function
+of L<Convert::TBX::Min>. Use it to generate a TBX-Basic document from a
+TBX-Min file.
+
+=cut
+
+@ARGV == 1 or
+    die "Usage: basic2min <TBX-Min input file>";
+my ($input) = @ARGV;
+
+print ${ min2basic($input) };
