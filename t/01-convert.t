@@ -1,10 +1,11 @@
 use strict;
 use warnings;
-use Test::More;
-plan tests => 3 + blocks();
-use Test::NoWarnings;
-use Convert::TBX::Min 'min2basic';
 use Test::Base;
+plan tests => 4 + blocks();
+filters_delay; # necessary to grab pre-filtered block section
+use Test::NoWarnings;
+use TBX::Min;
+use Convert::TBX::Min 'min2basic';
 use Test::XML;
 use Test::LongString;
 
@@ -18,9 +19,25 @@ sub convert {
 }
 filters {input => 'convert'};
 
+# first run one test creating a TBX::Min object from the unfiltered
+# data
+is_xml(
+    ${min2basic(
+        TBX::Min->new_from_xml(
+            \((blocks())[0]->input)
+        )
+    )},
+    (blocks())[0]->expected,
+    'convert from TBX::Min object'
+);
+
 for my $block(blocks){
+    $block->run_filters();
     is_xml($block->input, $block->expected, $block->name);
 }
+
+# test conversion of an input TBX::Min object
+
 
 # separately test that the output has the required XML declaration
 # and TBX-Basic doctype, both required by the TBX Checker. These are
@@ -35,7 +52,6 @@ contains_string( (blocks)[0]->input,
 
 __DATA__
 === basic
---- ONLY
 --- input
 <TBX dialect="TBX-Min">
     <header>
