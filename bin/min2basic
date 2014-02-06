@@ -8,11 +8,11 @@ use Convert::TBX::Min 'min2basic';
 
 =head1 SYNOPSIS
 
-    % basic2min <TBX-Min input file> >basic.tbx
+    % min2basic <TBX-Min input file> >basic.tbx
 
 =head1 DESCRIPTION
 
-This script is a simple CLI wrapper around the C<basic2min> function
+This script is a simple CLI wrapper around the C<min2basic> function
 of L<Convert::TBX::Min>. Use it to generate a TBX-Basic document from a
 TBX-Min file.
 
