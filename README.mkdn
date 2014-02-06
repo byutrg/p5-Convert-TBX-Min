@@ -4,7 +4,7 @@ Convert::TBX::Min - Convert TBX-Min to TBX-Basic
 
 # VERSION
 
-version 0.02
+version 0.03
 
 # SYNOPSIS
 
@@ -19,10 +19,20 @@ This module converts TBX-Min XML into TBX-Basic XML.
 
 ## `min2basic`
 
-Converts TBX-Min data into TBX-Basic data. The argument may be either
-the path to a TBX-Min file, a scalar ref containing the actual
-TBX-Min text, or a TBX::Min object. The return value is a scalar
-ref containing the TBX-Basic data.
+Converts TBX-Min data into TBX-Basic data. The input may be either
+a TBX::Min object or data to be passed to TBX::Min's
+["new\_from\_xml" in TBX::Min](http://search.cpan.org/perldoc?TBX::Min#new\_from\_xml) constructor. The return value is a scalar
+ref containing the TBX-Basic XML document as a UTF-8-encoded string.
+
+# SEE ALSO
+
+- [min2basic](http://search.cpan.org/perldoc?min2basic) (the included script)
+- [TBX::Min](http://search.cpan.org/perldoc?TBX::Min)
+- [Convert::TBX::Basic](http://search.cpan.org/perldoc?Convert::TBX::Basic)
+
+Schema for validating TBX documents, as well as more information
+about individual dialects, is available on
+[GitHub](https://github.com/byutrg/TBX-Spec).
 
 # AUTHOR
 
@@ -30,7 +40,7 @@ Nathan Glenn <garfieldnate@gmail.com>
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Nathan Glenn.
+This software is copyright (c) 2014 by Alan K. Melby.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
