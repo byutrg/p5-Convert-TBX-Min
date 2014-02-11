@@ -18,9 +18,9 @@ my $script_path = path( $Bin, qw(.. bin min2basic) )->realpath;
 my $include_path = path($Bin, qw(.. lib))->realpath;
 my $data_path = path($Bin, qw(corpus min_sample.tbx));
 
+my $command = qq{"$PERL" -I"$include_path" "$script_path" "$data_path"};
 my ($stdout, $stderr) = capture {
-    system(qq{"$PERL"}, qq{-I"$include_path"},
-        qq{"$script_path"}, qq{"$data_path"});
+    system($command);
 };
 
 ok($? == 0, 'process exited successfully')
