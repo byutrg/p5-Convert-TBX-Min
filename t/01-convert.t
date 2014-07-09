@@ -59,13 +59,13 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <entry id="C002">
-            <langGroup xml:lang="en">
-                <termGroup>
+        <termEntry id="C002">
+            <langSet xml:lang="en">
+                <tig>
                     <term>dog</term>
-                </termGroup>
-            </langGroup>
-        </entry>
+                </tig>
+            </langSet>
+        </termEntry>
     </body>
 </TBX>
 --- expected
@@ -106,14 +106,14 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <entry id="C002">
+        <termEntry id="C002">
             <subjectField>whatever</subjectField>
-            <langGroup xml:lang="en">
-                <termGroup>
+            <langSet xml:lang="en">
+                <tig>
                     <term>dog</term>
-                </termGroup>
-            </langGroup>
-        </entry>
+                </tig>
+            </langSet>
+        </termEntry>
     </body>
 </TBX>
 --- expected
@@ -160,13 +160,13 @@ __DATA__
         <license>CC BY license can be freely copied and modified</license>
     </header>
     <body>
-        <entry id="C002">
-            <langGroup xml:lang="en">
-                <termGroup>
+        <termEntry id="C002">
+            <langSet xml:lang="en">
+                <tig>
                     <term>dog</term>
-                </termGroup>
-            </langGroup>
-        </entry>
+                </tig>
+            </langSet>
+        </termEntry>
     </body>
 </TBX>
 --- expected
@@ -209,20 +209,20 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <entry id="C002">
-            <langGroup xml:lang="en">
-                <termGroup>
+        <termEntry id="C002">
+            <langSet xml:lang="en">
+                <tig>
                     <term>dog1</term>
-                </termGroup>
-            </langGroup>
-        </entry>
-        <entry id="C003">
-            <langGroup xml:lang="en">
-                <termGroup>
+                </tig>
+            </langSet>
+        </termEntry>
+        <termEntry id="C003">
+            <langSet xml:lang="en">
+                <tig>
                     <term>dog2</term>
-                </termGroup>
-            </langGroup>
-        </entry>
+                </tig>
+            </langSet>
+        </termEntry>
     </body>
 </TBX>
 --- expected
@@ -270,18 +270,18 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <entry id="C002">
-            <langGroup xml:lang="de">
-                <termGroup>
+        <termEntry id="C002">
+            <langSet xml:lang="de">
+                <tig>
                     <term>hund</term>
-                </termGroup>
-            </langGroup>
-            <langGroup xml:lang="en">
-                <termGroup>
+                </tig>
+            </langSet>
+            <langSet xml:lang="en">
+                <tig>
                     <term>dog</term>
-                </termGroup>
-            </langGroup>
-        </entry>
+                </tig>
+            </langSet>
+        </termEntry>
     </body>
 </TBX>
 --- expected
@@ -327,17 +327,17 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <entry id="C002">
-            <langGroup xml:lang="en">
-                <termGroup>
+        <termEntry id="C002">
+            <langSet xml:lang="en">
+                <tig>
                     <term>dog</term>
                     <note>cute!</note>
                     <termStatus>preferred</termStatus>
                     <customer>SAP</customer>
                     <partOfSpeech>noun</partOfSpeech>
-                </termGroup>
-            </langGroup>
-        </entry>
+                </tig>
+            </langSet>
+        </termEntry>
     </body>
 </TBX>
 --- expected
@@ -382,26 +382,26 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <entry id="C002">
-            <langGroup xml:lang="en">
-                <termGroup>
+        <termEntry id="C002">
+            <langSet xml:lang="en">
+                <tig>
                     <term>dog1</term>
                     <termStatus>preferred</termStatus>
-                </termGroup>
-                <termGroup>
+                </tig>
+                <tig>
                     <term>dog2</term>
                     <termStatus>admitted</termStatus>
-                </termGroup>
-                <termGroup>
+                </tig>
+                <tig>
                     <term>dog3</term>
                     <termStatus>notRecommended</termStatus>
-                </termGroup>
+                </tig>
                 <termGroup>
                     <term>dog4</term>
                     <termStatus>obsolete</termStatus>
-                </termGroup>
-            </langGroup>
-        </entry>
+                </tig>
+            </langSet>
+        </termEntry>
     </body>
 </TBX>
 --- expected
@@ -455,34 +455,34 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <entry id="C002">
-            <langGroup xml:lang="en">
+        <termEntry id="C002">
+            <langSet xml:lang="en">
                 <termGroup>
                     <term>dog1</term>
                     <partOfSpeech>noun</partOfSpeech>
-                </termGroup>
+                </tig>
                 <termGroup>
                     <term>dog2</term>
                     <partOfSpeech>verb</partOfSpeech>
-                </termGroup>
+                </tig>
                 <termGroup>
                     <term>dog3</term>
                     <partOfSpeech>adjective</partOfSpeech>
-                </termGroup>
+                </tig>
                 <termGroup>
                     <term>dog4</term>
                     <partOfSpeech>adverb</partOfSpeech>
-                </termGroup>
+                </tig>
                 <termGroup>
                     <term>dog5</term>
                     <partOfSpeech>properNoun</partOfSpeech>
-                </termGroup>
+                </tig>
                 <termGroup>
                     <term>dog6</term>
                     <partOfSpeech>other</partOfSpeech>
-                </termGroup>
-            </langGroup>
-        </entry>
+                </tig>
+            </langSet>
+        </termEntry>
     </body>
 </TBX>
 --- expected
