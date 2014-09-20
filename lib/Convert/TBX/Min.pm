@@ -49,7 +49,7 @@ ref containing the TBX-Basic XML document as a UTF-8-encoded string.
 =cut
 
 sub min2basic {
-	my ($input) = @_;
+	my ($self, $input) = @_;
 	my $min;
 	if(ref $input eq 'TBX::Min'){
 		$min = $input;
@@ -145,9 +145,15 @@ sub _make_text {
                         {type => 'customerSubset'}, $customer)->
                         paste(last_child => $term_el);
                 }
-                if(my $note = $term_group->note){
-                    XML::Twig::Elt->new(note => $note)->
-                        paste(last_child => $term_el);
+                for my $note_group (@{$term_group->note_groups})
+                {
+					for my $note_cluster (@{$note_group->notes})
+					{
+						if((my $note = $note_cluster->noteValue)){ #&& !$note_cluster->noteKey){
+							XML::Twig::Elt->new(note => $note)->
+								paste(last_child => $term_el);
+						}
+					}
                 }
             }
         }
