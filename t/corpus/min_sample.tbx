@@ -4,12 +4,12 @@
         <languages source="de" target="en"/>
     </header>
     <body>
-        <entry id="C002">
-            <langGroup xml:lang="en">
-                <termGroup>
+        <termEntry id="C002">
+            <langSet xml:lang="en">
+                <tig>
                     <term>dog</term>
-                </termGroup>
-            </langGroup>
-        </entry>
+                </tig>
+            </langSet>
+        </termEntry>
     </body>
 </TBX>
