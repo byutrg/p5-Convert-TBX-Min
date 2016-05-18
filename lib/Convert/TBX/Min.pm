@@ -49,7 +49,7 @@ ref containing the TBX-Basic XML document as a UTF-8-encoded string.
 =cut
 
 sub min2basic {
-	my ($self, $input) = @_;
+	my ($input) = @_;
 	my $min;
 	if(ref $input eq 'TBX::Min'){
 		$min = $input;

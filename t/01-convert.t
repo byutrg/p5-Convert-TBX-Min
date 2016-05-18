@@ -318,7 +318,7 @@ __DATA__
     </text>
 </martif>
 
-=== full termGroup
+=== full tig
 --- input
 <?xml version='1.0' encoding="UTF-8"?>
 <TBX dialect="TBX-Min">
@@ -331,7 +331,11 @@ __DATA__
             <langSet xml:lang="en">
                 <tig>
                     <term>dog</term>
-                    <note>cute!</note>
+                    <noteGrp>
+						<note>
+							<noteValue>cute!</noteValue>
+						</note>
+					</noteGrp>
                     <termStatus>preferred</termStatus>
                     <customer>SAP</customer>
                     <partOfSpeech>noun</partOfSpeech>
@@ -396,7 +400,7 @@ __DATA__
                     <term>dog3</term>
                     <termStatus>notRecommended</termStatus>
                 </tig>
-                <termGroup>
+                <tig>
                     <term>dog4</term>
                     <termStatus>obsolete</termStatus>
                 </tig>
@@ -457,27 +461,27 @@ __DATA__
     <body>
         <termEntry id="C002">
             <langSet xml:lang="en">
-                <termGroup>
+                <tig>
                     <term>dog1</term>
                     <partOfSpeech>noun</partOfSpeech>
                 </tig>
-                <termGroup>
+                <tig>
                     <term>dog2</term>
                     <partOfSpeech>verb</partOfSpeech>
                 </tig>
-                <termGroup>
+                <tig>
                     <term>dog3</term>
                     <partOfSpeech>adjective</partOfSpeech>
                 </tig>
-                <termGroup>
+                <tig>
                     <term>dog4</term>
                     <partOfSpeech>adverb</partOfSpeech>
                 </tig>
-                <termGroup>
+                <tig>
                     <term>dog5</term>
                     <partOfSpeech>properNoun</partOfSpeech>
                 </tig>
-                <termGroup>
+                <tig>
                     <term>dog6</term>
                     <partOfSpeech>other</partOfSpeech>
                 </tig>
