@@ -1,7 +1,7 @@
 package Convert::TBX::Min;
 use strict;
 use warnings;
-use TBX::Min 0.06;
+use TBX::Min 0.07;
 use XML::Writer;
 use XML::Twig;
 use Exporter::Easy (
